@@ -1,0 +1,50 @@
+﻿@model List<SweetAndSavoryBakery.Models.CartItem>
+@{
+    ViewBag.Title = "Giỏ hàng của bạn";
+}
+
+<h2 class="text-center fw-bold mt-4">🛒 Giỏ hàng của bạn</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <p class="text-center text-muted mt-4">Chưa có sản phẩm nào trong giỏ hàng 😢</p>
+}
+else
+{
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>Ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.ImageUrl" style="width: 80px; height: 80px; object-fit: cover;" />
+                    </td>
+                    <td>@item.Name</td>
+                    <td>@String.Format("{0:N0} VNĐ", item.Price)</td>
+                    <td>@item.Quantity</td>
+                    <td>@String.Format("{0:N0} VNĐ", item.Price * item.Quantity)</td>
+                    <td>
+                        <a href="@Url.Action("Remove", "Cart", new { id = item.ProductId })"
+                           class="btn btn-outline-danger btn-sm">❌ Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4 class="text-end me-4 mt-3">Tổng cộng: <b>@String.Format("{0:N0} VNĐ", ViewBag.Total)</b></h4>
+
+    <div class="text-end mt-3">
+        <a href="@Url.Action("Checkout", "Cart")" class="btn btn-pink px-4">💳 Thanh toán</a>
+    </div>
+}

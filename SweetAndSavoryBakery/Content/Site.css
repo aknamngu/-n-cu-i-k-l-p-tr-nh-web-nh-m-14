@@ -1,0 +1,31 @@
+﻿body {
+    font-family: "Poppins", sans-serif;
+    background-color: #fff4f7;
+    color: #333;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #d63384 !important;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+    .card:hover {
+        transform: scale(1.03);
+    }
+
+.btn-pink {
+    background-color: #ffb6c1;
+    border: none;
+    color: #fff;
+}
+
+    .btn-pink:hover {
+        background-color: #ff8fab;
+        color: #fff;
+    }

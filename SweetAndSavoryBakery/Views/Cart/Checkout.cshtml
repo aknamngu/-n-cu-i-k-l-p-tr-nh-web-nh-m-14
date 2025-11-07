@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Thanh toán";
+}
+
+<h2 class="text-center fw-bold mt-4">💳 Thanh toán</h2>
+
+<div class="text-center mt-4">
+    <p>Tổng tiền cần thanh toán: <b>@String.Format("{0:N0} VNĐ", ViewBag.Total)</b></p>
+    <p>Cảm ơn bạn đã mua hàng tại <b>Sweet & Savory</b> 💖</p>
+    <a href="@Url.Action("Index", "Product")" class="btn btn-pink mt-3 px-4">⬅ Tiếp tục mua sắm</a>
+</div>
+

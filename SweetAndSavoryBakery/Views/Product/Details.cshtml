@@ -1,0 +1,20 @@
+﻿@model SweetAndSavoryBakery.Models.Product
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-5 text-center">
+            <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded shadow-sm" />
+        </div>
+        <div class="col-md-7">
+            <h2 class="fw-bold text-pink">@Model.Name</h2>
+            <p class="lead text-muted">@Model.Category.Name</p>
+            <p class="fs-5">@String.Format("{0:N0} VNĐ", @Model.Price)</p>
+            <p>@Model.Description</p>
+            <a href="/Cart/Add/@Model.Id" class="btn btn-pink">🛒 Thêm vào giỏ hàng</a>
+            <a href="/Product" class="btn btn-outline-secondary ms-2">⬅️ Quay lại</a>
+        </div>
+    </div>
+</div>

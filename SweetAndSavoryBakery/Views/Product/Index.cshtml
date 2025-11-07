@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SweetAndSavoryBakery.Models.Product>
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+}
+
+<h2 class="text-center fw-bold mt-4">🧁 Danh sách sản phẩm</h2>
+
+<!-- 🔹 Bộ lọc loại bánh -->
+<div class="text-center mb-4">
+    <a href="@Url.Action("Index", "Product")"
+       class="btn @(ViewBag.SelectedCategory == null ? "btn-pink" : "btn-outline-pink") mx-1">
+        Tất cả
+    </a>
+    @foreach (var cat in ViewBag.Categories)
+    {
+        <a href="@Url.Action("Index", "Product", new { categoryId = cat.Id })"
+           class="btn @(ViewBag.SelectedCategory == cat.Id ? "btn-pink" : "btn-outline-pink") mx-1">
+            @cat.Name
+        </a>
+    }
+</div>
+
+<!-- 🔹 Danh sách sản phẩm -->
+<div class="row mt-4">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4 text-center">
+                <div class="card shadow-sm border-0">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name"
+                         style="height:220px; object-fit:cover; border-radius:8px;" />
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="text-muted">@String.Format("{0:N0} VNĐ", item.Price)</p>
+
+                        <a href="@Url.Action("Details", "Product", new { id = item.Id })"
+                           class="btn btn-outline-pink px-3 me-2">🔍 Xem chi tiết</a>
+
+                        <a href="@Url.Action("Add", "Cart", new { id = item.Id })"
+                           class="btn btn-pink px-3">🛒 Thêm giỏ hàng</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-center text-muted">Không có sản phẩm nào trong danh mục này.</p>
+    }
+</div>

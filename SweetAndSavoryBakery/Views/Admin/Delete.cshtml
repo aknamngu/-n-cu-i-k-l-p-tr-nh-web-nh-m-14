@@ -1,0 +1,25 @@
+﻿@model SweetAndSavoryBakery.Models.Product
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+}
+
+<h2 class="text-center fw-bold mt-4 text-danger">🗑 Xóa sản phẩm</h2>
+
+<div class="alert alert-warning text-center">
+    <p>Bạn có chắc muốn xóa sản phẩm <strong>@Model.Name</strong> không?</p>
+</div>
+
+<div class="text-center">
+    <img src="@Model.ImageUrl" width="150" style="border-radius:10px; margin-bottom:15px;" /><br />
+    <p class="text-muted">Giá: @String.Format("{0:N0} VNĐ", Model.Price)</p>
+    <p>Loại: @Model.Category?.Name</p>
+</div>
+
+@using (Html.BeginForm("DeleteConfirmed", "Admin", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-danger">🗑 Xóa</button>
+        <a href="@Url.Action("Index", "Admin")" class="btn btn-outline-dark ms-3">⬅ Hủy</a>
+    </div>
+}

@@ -1,0 +1,40 @@
+﻿@model SweetAndSavoryBakery.Models.Product
+@{
+    ViewBag.Title = "Sửa sản phẩm";
+}
+
+<h2 class="text-center fw-bold mt-4">✏️ Sửa sản phẩm</h2>
+
+@using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group mt-3">
+        <label>Tên sản phẩm</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Giá (VNĐ)</label>
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", type = "number", step = "1000" })
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Loại bánh</label>
+        @Html.DropDownList("CategoryId", null, "-- Chọn loại bánh --", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Mô tả</label>
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 3 })
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Ảnh hiện tại</label><br />
+        <img src="@Model.ImageUrl" alt="@Model.Name" width="120" style="border-radius:10px; margin-bottom:10px;" />
+        <input type="file" name="imageFile" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-pink mt-4">💾 Cập nhật</button>
+    <a href="@Url.Action("Index", "Admin")" class="btn btn-outline-dark mt-4">⬅ Quay lại</a>
+}

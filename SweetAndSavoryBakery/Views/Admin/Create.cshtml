@@ -1,0 +1,32 @@
+﻿@model SweetAndSavoryBakery.Models.Product
+@{
+    ViewBag.Title = "Thêm sản phẩm";
+}
+
+<h2 class="text-center fw-bold mt-4">➕ Thêm sản phẩm mới</h2>
+
+@using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group mt-3">
+        <label>Tên sản phẩm</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Giá</label>
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", type = "number", step = "1000" })
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Loại</label>
+        @Html.DropDownList("CategoryId", null, "-- Chọn loại --", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group mt-3">
+        <label>Ảnh sản phẩm</label>
+        <input type="file" name="imageFile" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-pink mt-4">💾 Lưu sản phẩm</button>
+    <a href="@Url.Action("Index", "Admin")" class="btn btn-outline-dark mt-4">⬅ Quay lại</a>
+}

@@ -1,0 +1,6 @@
+﻿
+@model SweetAndSavoryBakery.Models.Order
+<h2>Đặt hàng thành công 🎉</h2>
+<p>Mã đơn: <b>#@Model.Id</b></p>
+<p>Tổng tiền: <b>@String.Format("{0:#,0} đ", Model.Total)</b></p>
+<p>@Html.ActionLink("Về trang chủ", "Index", "Home")</p>

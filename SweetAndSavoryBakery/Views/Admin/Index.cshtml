@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SweetAndSavoryBakery.Models.Product>
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+}
+
+<h2 class="text-center fw-bold mt-4">🍰 Quản lý sản phẩm</h2>
+
+<div class="text-end mb-3">
+    <a href="@Url.Action("Create", "Admin")" class="btn btn-pink">➕ Thêm sản phẩm mới</a>
+</div>
+
+<table class="table table-striped table-bordered align-middle">
+    <thead class="text-center table-pink">
+        <tr>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Loại</th>
+            <th style="width:180px;">Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    <img src="@item.ImageUrl" alt="@item.Name" width="90" height="90" style="object-fit:cover; border-radius:8px;" />
+                </td>
+                <td>@item.Name</td>
+                <td>@String.Format("{0:N0} VNĐ", item.Price)</td>
+                <td>@item.Category?.Name</td>
+                <td class="text-center">
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-outline-dark btn-sm me-1">✏️ Sửa</a>
+                    <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-outline-info btn-sm me-1">🔍 Xem</a>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-outline-danger btn-sm">🗑 Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
